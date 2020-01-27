@@ -1,0 +1,66 @@
+﻿@model IEnumerable<WebAppPP3.Models.PUESTOS>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Publicaciones";
+}
+
+<h2>Publicaciones</h2>
+@using (Html.BeginForm("Publicaciones", "PUESTOS", new { categoria = ViewBag.getcategorias, BuscarPuestos = ViewBag.BuscarPuesto }))
+{
+    <p>
+        Buscar por posicion: @Html.TextBox("BuscarPuestos", ViewBag.CurrentFilter as string)
+        @Html.DropDownList("getcategorias", ViewData["getcategorias"] as List<SelectListItem>)
+
+        <input type="submit" value="Buscar" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ubicacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Posicion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Empresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha_Publicacion)
+        </th>
+        <th>
+            
+        </th>
+
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Ubicacion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Posicion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Empresa)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Fecha_Publicacion)
+    </td>
+    <td>
+      
+        @Html.ActionLink("Ver Mas", "Detailsusr", new { id = item.Id_puestos }) 
+      
+    </td>
+</tr>
+    }
+
+</table>
+
+<br />
+<h3>Cantidad de Item Mostados : @ViewBag.CantidadItem</h3>

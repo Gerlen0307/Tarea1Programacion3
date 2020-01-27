@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Practica1Programacion3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CATEGORIA">
+          <Key>
+            <PropertyRef Name="Id_Categoria" />
+          </Key>
+          <Property Name="Id_Categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NumeroMaxPuestos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CantidadPuestos" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PUESTOS">
+          <Key>
+            <PropertyRef Name="Id_puestos" />
+          </Key>
+          <Property Name="Id_puestos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ubicacion" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Posicion" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Empresa" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Horario" Type="nvarchar" MaxLength="70" />
+          <Property Name="foto" Type="varbinary(max)" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="500" />
+          <Property Name="Salario" Type="float" Nullable="false" />
+          <Property Name="Fecha_Publicacion" Type="datetime" Nullable="false" />
+          <Property Name="Id_Categoria" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ROLL">
+          <Key>
+            <PropertyRef Name="Id_Rol" />
+          </Key>
+          <Property Name="Id_Rol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion_Rol" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="Id_Usuario" />
+          </Key>
+          <Property Name="Id_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Contrasena" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Id_Roll" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__PUESTOS__Id_Cate__3F466844">
+          <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="1" />
+          <End Role="PUESTOS" Type="Self.PUESTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIA">
+              <PropertyRef Name="Id_Categoria" />
+            </Principal>
+            <Dependent Role="PUESTOS">
+              <PropertyRef Name="Id_Categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USUARIO__Id_Roll__4E88ABD4">
+          <End Role="ROLL" Type="Self.ROLL" Multiplicity="1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLL">
+              <PropertyRef Name="Id_Rol" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="Id_Roll" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetPuestoByCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCategoria" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="Practica1Programacion3ModelStoreContainer">
+          <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NumeroMaxPuestos" EntityType="Self.NumeroMaxPuestos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PUESTOS" EntityType="Self.PUESTOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLL" EntityType="Self.ROLL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__PUESTOS__Id_Cate__3F466844" Association="Self.FK__PUESTOS__Id_Cate__3F466844">
+            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+            <End Role="PUESTOS" EntitySet="PUESTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USUARIO__Id_Roll__4E88ABD4" Association="Self.FK__USUARIO__Id_Roll__4E88ABD4">
+            <End Role="ROLL" EntitySet="ROLL" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Practica1Programacion3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CATEGORIA">
+          <Key>
+            <PropertyRef Name="Id_Categoria" />
+          </Key>
+          <Property Name="Id_Categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PUESTOS" Relationship="Self.FK__PUESTOS__Id_Cate__3F466844" FromRole="CATEGORIA" ToRole="PUESTOS" />
+        </EntityType>
+        <EntityType Name="NumeroMaxPuestos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CantidadPuestos" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PUESTOS">
+          <Key>
+            <PropertyRef Name="Id_puestos" />
+          </Key>
+          <Property Name="Id_puestos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ubicacion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Posicion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Empresa" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Horario" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Salario" Type="Double" Nullable="false" />
+          <Property Name="Fecha_Publicacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Id_Categoria" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CATEGORIA" Relationship="Self.FK__PUESTOS__Id_Cate__3F466844" FromRole="PUESTOS" ToRole="CATEGORIA" />
+        </EntityType>
+        <EntityType Name="ROLL">
+          <Key>
+            <PropertyRef Name="Id_Rol" />
+          </Key>
+          <Property Name="Id_Rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion_Rol" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.FK__USUARIO__Id_Roll__4E88ABD4" FromRole="ROLL" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="Id_Usuario" />
+          </Key>
+          <Property Name="Id_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Contrasena" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id_Roll" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ROLL" Relationship="Self.FK__USUARIO__Id_Roll__4E88ABD4" FromRole="USUARIO" ToRole="ROLL" />
+        </EntityType>
+        <Association Name="FK__PUESTOS__Id_Cate__3F466844">
+          <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="1" />
+          <End Role="PUESTOS" Type="Self.PUESTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIA">
+              <PropertyRef Name="Id_Categoria" />
+            </Principal>
+            <Dependent Role="PUESTOS">
+              <PropertyRef Name="Id_Categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USUARIO__Id_Roll__4E88ABD4">
+          <End Role="ROLL" Type="Self.ROLL" Multiplicity="1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLL">
+              <PropertyRef Name="Id_Rol" />
+            </Principal>
+            <Dependent Role="USUARIO">
+              <PropertyRef Name="Id_Roll" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Practica1Programacion3Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" />
+          <EntitySet Name="NumeroMaxPuestos" EntityType="Self.NumeroMaxPuestos" />
+          <EntitySet Name="PUESTOS" EntityType="Self.PUESTOS" />
+          <EntitySet Name="ROLL" EntityType="Self.ROLL" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+          <AssociationSet Name="FK__PUESTOS__Id_Cate__3F466844" Association="Self.FK__PUESTOS__Id_Cate__3F466844">
+            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+            <End Role="PUESTOS" EntitySet="PUESTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USUARIO__Id_Roll__4E88ABD4" Association="Self.FK__USUARIO__Id_Roll__4E88ABD4">
+            <End Role="ROLL" EntitySet="ROLL" />
+            <End Role="USUARIO" EntitySet="USUARIO" />
+          </AssociationSet>
+          <FunctionImport Name="GetPuestoByCategoria" ReturnType="Collection(Practica1Programacion3Model.GetPuestoByCategoria_Result)">
+            <Parameter Name="IdCategoria" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetPuestoByCategoria_Result">
+          <Property Type="String" Name="Posicion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Ubicacion" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Empresa" Nullable="false" MaxLength="200" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Practica1Programacion3ModelStoreContainer" CdmEntityContainer="Practica1Programacion3Entities">
+          <EntitySetMapping Name="CATEGORIA">
+            <EntityTypeMapping TypeName="Practica1Programacion3Model.CATEGORIA">
+              <MappingFragment StoreEntitySet="CATEGORIA">
+                <ScalarProperty Name="Id_Categoria" ColumnName="Id_Categoria" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NumeroMaxPuestos">
+            <EntityTypeMapping TypeName="Practica1Programacion3Model.NumeroMaxPuestos">
+              <MappingFragment StoreEntitySet="NumeroMaxPuestos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="CantidadPuestos" ColumnName="CantidadPuestos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PUESTOS">
+            <EntityTypeMapping TypeName="Practica1Programacion3Model.PUESTOS">
+              <MappingFragment StoreEntitySet="PUESTOS">
+                <ScalarProperty Name="Id_puestos" ColumnName="Id_puestos" />
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+                <ScalarProperty Name="Posicion" ColumnName="Posicion" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="Horario" ColumnName="Horario" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Salario" ColumnName="Salario" />
+                <ScalarProperty Name="Fecha_Publicacion" ColumnName="Fecha_Publicacion" />
+                <ScalarProperty Name="Id_Categoria" ColumnName="Id_Categoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLL">
+            <EntityTypeMapping TypeName="Practica1Programacion3Model.ROLL">
+              <MappingFragment StoreEntitySet="ROLL">
+                <ScalarProperty Name="Id_Rol" ColumnName="Id_Rol" />
+                <ScalarProperty Name="Descripcion_Rol" ColumnName="Descripcion_Rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO">
+            <EntityTypeMapping TypeName="Practica1Programacion3Model.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+                <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="Id_Roll" ColumnName="Id_Roll" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetPuestoByCategoria" FunctionName="Practica1Programacion3Model.Store.GetPuestoByCategoria">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Practica1Programacion3Model.GetPuestoByCategoria_Result">
+                <ScalarProperty Name="Posicion" ColumnName="Posicion" />
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
