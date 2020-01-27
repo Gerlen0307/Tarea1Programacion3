@@ -7,14 +7,16 @@
 }
 
 <h2>Publicaciones</h2>
-@using (Html.BeginForm("Publicaciones", "PUESTOS", new { categoria = ViewBag.getcategorias, BuscarPuestos = ViewBag.BuscarPuesto }))
+@using (Html.BeginForm("Publicaciones", "PUESTOS", new { cambiar = ViewBag.IsChecked , categoria = ViewBag.getcategorias, BuscarPuestos = ViewBag.BuscarPuesto }))
 {
-    <p>
-        Buscar por posicion: @Html.TextBox("BuscarPuestos", ViewBag.CurrentFilter as string)
-        @Html.DropDownList("getcategorias", ViewData["getcategorias"] as List<SelectListItem>)
+<p>
+    Buscar por posicion: @Html.TextBox("BuscarPuestos")
+    @Html.DropDownList("getcategorias", ViewData["getcategorias"] as List<SelectListItem>)
+    Ver Todos los Registros: @Html.CheckBox("IsChecked", new { @value = "true" })
+   
+    <input type="submit" value="Buscar" />
 
-        <input type="submit" value="Buscar" />
-    </p>
+</p>
 }
 <table class="table">
     <tr>
@@ -31,7 +33,7 @@
             @Html.DisplayNameFor(model => model.Fecha_Publicacion)
         </th>
         <th>
-            
+
         </th>
 
 
@@ -39,25 +41,25 @@
 
     @foreach (var item in Model)
     {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Ubicacion)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Posicion)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Empresa)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Fecha_Publicacion)
-    </td>
-    <td>
-      
-        @Html.ActionLink("Ver Mas", "Detailsusr", new { id = item.Id_puestos }) 
-      
-    </td>
-</tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ubicacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Posicion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empresa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha_Publicacion)
+            </td>
+            <td>
+
+                @Html.ActionLink("Ver Mas", "Detailsusr", new { id = item.Id_puestos })
+
+            </td>
+        </tr>
     }
 
 </table>

@@ -235,9 +235,6 @@
     <Content Include="Views\CATEGORIAs\Details.cshtml" />
     <Content Include="Views\CATEGORIAs\Edit.cshtml" />
     <Content Include="Views\CATEGORIAs\Index.cshtml" />
-    <Content Include="Views\NumeroMaxPuestos\Create.cshtml" />
-    <Content Include="Views\NumeroMaxPuestos\Delete.cshtml" />
-    <Content Include="Views\NumeroMaxPuestos\Details.cshtml" />
     <Content Include="Views\NumeroMaxPuestos\Edit.cshtml" />
     <Content Include="Views\NumeroMaxPuestos\Index.cshtml" />
     <Content Include="Views\PUESTOS\Create.cshtml" />
@@ -257,6 +254,7 @@
     <Content Include="Views\USUARIOs\Index.cshtml" />
     <Content Include="Views\PUESTOS\Publicaciones.cshtml" />
     <Content Include="Views\PUESTOS\Detailsusr.cshtml" />
+    <Content Include="Views\Shared\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

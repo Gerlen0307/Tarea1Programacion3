@@ -21,13 +21,30 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Ver Publicaciones", "Publicaciones", "PUESTOS")</li>
-                    <li>@Html.ActionLink("Puestos", "Index", "PUESTOS")</li>
-                    <li>@Html.ActionLink("Rools", "Index", "ROLLs")</li>
-                    <li>@Html.ActionLink("Usuarios", "Index", "USUARIOs")</li>
-                    <li>@Html.ActionLink("NumeroMaxPuestos", "Index", "NumeroMaxPuestos")</li>
-                    <li>@Html.ActionLink("Categorias", "Index", "CATEGORIAs")</li>
+                    @if (true)
+                    {
+                        <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Ver Publicaciones", "Publicaciones", "PUESTOS")</li>
+                        <li>@Html.ActionLink("Puestos", "Index", "PUESTOS")</li>
+                        <li>@Html.ActionLink("Rools", "Index", "ROLLs")</li>
+                        <li>@Html.ActionLink("Usuarios", "Index", "USUARIOs")</li>
+                        <li>@Html.ActionLink("NumeroMaxPuestos", "Index", "NumeroMaxPuestos")</li>
+                        <li>@Html.ActionLink("Categorias", "Index", "CATEGORIAs")</li>
+                        <ul class="nav navbar-nav navbar-right">
+                           
+                            <li>@Html.ActionLink("Cerrar sesión", "CerrarSeccion", "Home")</li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Ver Publicaciones", "Publicaciones", "PUESTOS")</li>
+                        <ul class="nav navbar-nav navbar-right">
+                         
+                            <li>@Html.ActionLink("Iniciar sesión", "Login", "Usuarios")</li>
+                        </ul>
+                    }
+
                 </ul>
             </div>
         </div>
@@ -36,7 +53,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year - PROGRAMACION 3</p>
         </footer>
     </div>
 

@@ -144,14 +144,24 @@ namespace WebAppPP3.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult Publicaciones(int CantItem = 10, int getcategorias = 0, String BuscarPuestos = "")
+        public ActionResult Publicaciones(bool IsChecked = false,int CantItem = 10, int getcategorias = 0, String BuscarPuestos = "")
         {
           
             var PUESTOS = db.PUESTOS;
             var dbcategoria = db.CATEGORIA;
             var dbcant = db.NumeroMaxPuestos;
+            if (IsChecked == false)
+            {
+                CantItem = dbcant.Select(s => s.CantidadPuestos).FirstOrDefault();
 
-            CantItem = dbcant.Select(s => s.CantidadPuestos).FirstOrDefault();
+
+            }
+            else
+            {
+                CantItem = 1000000;
+                IsChecked = false;
+            }
+          
 
             List<SelectListItem> lst = new List<SelectListItem>();
 
